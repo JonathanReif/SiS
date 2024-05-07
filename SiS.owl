@@ -169,6 +169,34 @@
     <!-- http://www.w3id.org/hsu-aut/VDI3682#Information -->
 
     <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/VDI3682#Information"/>
+    
+
+
+    <!-- http://www.w3id.org/hsu-aut/VDI3682#Process -->
+
+    <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/VDI3682#Process">
+        <owl:equivalentClass rdf:resource="http://www.w3id.org/hsu-aut/css#Process"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3id.org/hsu-aut/VDI3682#TechnicalResource -->
+
+    <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/VDI3682#TechnicalResource">
+        <owl:equivalentClass rdf:resource="http://www.w3id.org/hsu-aut/css#Resource"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3id.org/hsu-aut/css#Process -->
+
+    <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/css#Process"/>
+    
+
+
+    <!-- http://www.w3id.org/hsu-aut/css#Resource -->
+
+    <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/css#Resource"/>
 </rdf:RDF>
 
 
