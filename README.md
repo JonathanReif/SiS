@@ -9,7 +9,7 @@ The SiS information model represents simulations, their ability to generate spec
 
 **Alignement Ontology**
 ---
-![image](https://github.com/JonathanReif/SiS-Information-Model/assets/101399866/364342df-d08a-4ffd-a5e2-e8abd4c14778)
+[SimMeta.drawio.pdf](https://github.com/JonathanReif/SiS-Information-Model/files/15308377/SimMeta.drawio.pdf)
 
 **Further Reading**
 ---
