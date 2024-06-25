@@ -12,7 +12,6 @@
         <owl:imports rdf:resource="http://www.hsu-hh.de/aut/ParX"/>
         <owl:imports rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633"/>
         <owl:imports rdf:resource="http://www.w3id.org/hsu-aut/2.0.1"/>
-        <owl:imports rdf:resource="http://www.w3id.org/hsu-aut/VDI3682/4.0.1"/>
         <owl:imports rdf:resource="http://www.w3id.org/hsu-aut/css/1.0.1"/>
     </owl:Ontology>
     
@@ -32,8 +31,8 @@
     <!-- http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#hasProcessQuantity -->
 
     <rdf:Description rdf:about="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#hasProcessQuantity">
-        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/VDI3682#ProcessOperator"/>
-        <rdfs:range rdf:resource="http://www.w3id.org/hsu-aut/VDI3682#Information"/>
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Process"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Data"/>
     </rdf:Description>
     
 
@@ -41,9 +40,18 @@
     <!-- http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#hasResultsData -->
 
     <rdf:Description rdf:about="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#hasResultsData">
-        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/VDI3682#ProcessOperator"/>
-        <rdfs:range rdf:resource="http://www.w3id.org/hsu-aut/VDI3682#Information"/>
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Process"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Data"/>
     </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/SiS#hasInfluence -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/SiS#hasInfluence">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Data"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/SiS#Influence"/>
+    </owl:ObjectProperty>
     
 
 
@@ -69,7 +77,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/SiS#isInfluenceFor">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/SiS#Influence"/>
-        <rdfs:range rdf:resource="http://www.w3id.org/hsu-aut/VDI3682#ProcessOperator"/>
+        <rdfs:range rdf:resource="http://www.w3id.org/hsu-aut/css#Process"/>
     </owl:ObjectProperty>
     
 
@@ -78,7 +86,8 @@
 
     <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/DINEN61360#has_Data_Element">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Data"/>
-        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/VDI3682#TechnicalResource"/>
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3id.org/hsu-aut/DINEN61360#Data_Element"/>
     </rdf:Description>
     
 
@@ -86,10 +95,44 @@
     <!-- http://www.w3id.org/hsu-aut/css#providesCapability -->
 
     <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/css#providesCapability">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Simulation"/>
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3id.org/hsu-aut/css#Capability"/>
     </rdf:Description>
-    
 
+    <!-- http://www.w3id.org/hsu-aut/css#executes -->
+
+    <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/css#executes">
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3id.org/hsu-aut/css#Process"/>
+    </rdf:Description>
+
+    <!-- http://www.hsu-hh.de/aut/ParX#hasApplication -->
+        
+    <rdf:Description rdf:about="http://www.hsu-hh.de/aut/ParX#hasApplication">
+        <rdfs:domain rdf:resource="http://www.w3id.orf/hsu-aut/css#Process"/>
+        <rdfs:range rdf:resource="http://www.hsu-hh.de/aut/ParX#Interdependency"/>
+    </rdf:Description>
+
+    <!-- http://www.hsu-hh.de/aut/ParX#isDataFor -->
+
+    <rdf:Description rdf:about="http://www.hsu-hh.de/aut/ParX#isDataFor">
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/DINEN61360#Data_Element"/>
+        <rdfs:range rdf:resource="http://openmath.org/vocab/math#Object"/>
+    </rdf:Description>
+
+    <!-- http://www.openmath.org/vocab/math#arguments -->
+
+    <rdf:Description rdf:about="http://openmath.org/vocab/math#arguments">
+        <rdfs:domain rdf:resource="http://www.hsu-hh.de/aut/ParX#Interdependency"/>
+        <rdfs:range rdf:resource="http://openmath.org/vocab/math#ObjectList"/>
+    </rdf:Description>
+
+    <!-- http://www.openmath.org/vocab/math#operator -->
+
+    <rdf:Description rdf:about="http://openmath.org/vocab/math#operator">
+        <rdfs:domain rdf:resource="http://www.hsu-hh.de/aut/ParX#Interdependency"/>
+        <rdfs:range rdf:resource="http://openmath.org/vocab/math#Operator"/>
+    </rdf:Description>
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -99,29 +142,40 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
 
     <!-- http://openmath.org/vocab/math#Application -->
 
     <rdf:Description rdf:about="http://openmath.org/vocab/math#Application">
-        <owl:equivalentClass rdf:resource="http://www.semanticweb.org/reif/ontologies/SiS#Interdependency"/>
+        <owl:equivalentClass rdf:resource="http://www.hsu-hh.de/aut/ParX#Interdependency"/>
+    </rdf:Description>
+
+    <!-- http://openmath.org/vocab/math#Operator -->
+
+    <rdf:Description rdf:about="http://openmath.org/vocab/math#Operator">
+
+    <!-- http://www.hsu-hh.de/aut/ParX#Interdependency -->
+
+    <rdf:Description rdf:about="http://www.hsu-hh.de/aut/ParX#Interdependency">
+        <owl:equivalentClass rdf:resource="http://wwww.semanticweb.org/reif/ontologies/SiS#Interdependency"/>
     </rdf:Description>
     
+    <!-- http://wwww.semanticweb.org/reif/ontologies/SiS#Influence -->
+
+    <rdf:Description rdf:about="http://wwww.semanticweb.org/reif/ontologies/SiS#Influence"/>
+        <owl:equivalentClass rdf:resource="http://www.hsu-hh.de/aut/ParX#Influence"/>
+    </rdf:Description>
 
 
     <!-- http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Data -->
 
     <rdf:Description rdf:about="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Data">
-        <owl:equivalentClass rdf:resource="http://www.w3id.org/hsu-aut/VDI3682#Information"/>
-    </rdf:Description>
     
 
 
     <!-- http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Simulation -->
 
     <rdf:Description rdf:about="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Simulation">
-        <rdfs:subClassOf rdf:resource="http://www.w3id.org/hsu-aut/VDI3682#TechnicalResource"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/hsu-aut/css#Resource"/>
     </rdf:Description>
     
 
@@ -164,39 +218,21 @@
         <rdfs:subClassOf rdf:resource="http://www.w3id.org/hsu-aut/DINEN61360#Data_Element"/>
     </owl:Class>
     
-
-
-    <!-- http://www.w3id.org/hsu-aut/VDI3682#Information -->
-
-    <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/VDI3682#Information"/>
-    
-
-
-    <!-- http://www.w3id.org/hsu-aut/VDI3682#Process -->
-
-    <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/VDI3682#Process">
-        <owl:equivalentClass rdf:resource="http://www.w3id.org/hsu-aut/css#Process"/>
-    </rdf:Description>
-    
-
-
-    <!-- http://www.w3id.org/hsu-aut/VDI3682#TechnicalResource -->
-
-    <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/VDI3682#TechnicalResource">
-        <owl:equivalentClass rdf:resource="http://www.w3id.org/hsu-aut/css#Resource"/>
-    </rdf:Description>
-    
-
-
     <!-- http://www.w3id.org/hsu-aut/css#Process -->
 
     <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/css#Process"/>
     
-
-
     <!-- http://www.w3id.org/hsu-aut/css#Resource -->
 
     <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/css#Resource"/>
+
+    <!-- http://www.w3id.org/hsu-aut/css#Capability -->
+
+    <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/css#Capability"/>
+
+    <!-- http://www.w3id.org/hsu-aut/DINEN61360#Data_Element -->
+
+    <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/DINEN61360#Data_Element"/>
 </rdf:RDF>
 
 
