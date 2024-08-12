@@ -7,7 +7,7 @@ Instead, a combination of different simulations is required, e.g., when the resu
 Manual planning of these sequences is considered a labor-intensive task that requires careful consideration of factors such as simulation time, simulation cost and quality of simulation results to select the optimal simulation scenario for a given request.
 The SiS information model represents simulations, their ability to generate specific knowledge and their respective quality criteria and serves as a basis for the automatic generation of simulation sequences.
 
-**Alignement Ontology**
+**Alignment Ontology**
 ---
 ![image](https://github.com/JonathanReif/SiS-Information-Model/assets/101399866/1c2609f4-fa0e-4eeb-9f23-c8ba61e96e7d)
 
