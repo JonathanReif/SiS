@@ -1,0 +1,1 @@
+The VDI3633 ODP presented here is only an early draft for the SiS ontology and still needs to be expanded in order to fully map the VDI3633 standard.
