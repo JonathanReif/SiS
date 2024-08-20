@@ -14,4 +14,5 @@ The SiS information model represents simulations, their ability to generate spec
 **Further Reading**
 ---
 Reif, Jonathan; Jeleniewski, Tom; Fay, Alexander (2023): An Approach to Automating the Generation of Process Simulation Sequences. In: 2023 IEEE 28th International Conference on Emerging Technologies and Factory Automation (ETFA). 2023 IEEE 28th International Conference on Emerging Technologies and Factory Automation (ETFA). Sinaia, Romania, 12.09.2023 - 15.09.2023: IEEE, S. 1–4. 10.1109/ETFA54631.2023.10275718
+
 Reif, Jonathan; Jeleniewski, Tom; Köcher, Aljosha; Frerich, Tim; Gehlhoff, Felix; Fay, Alexander (2024): Semantic Capability Model for the Simulation of Manufacturing Processes. 10.48550/arXiv.2408.08048
