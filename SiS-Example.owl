@@ -102,12 +102,7 @@
         <rdfs:range rdf:resource="http://www.w3id.org/hsu-aut/css#Capability"/>
     </rdf:Description>
 
-    <!-- http://www.w3id.org/hsu-aut/css#executes -->
 
-    <rdf:Description rdf:about="http://www.w3id.org/hsu-aut/css#executes">
-        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Resource"/>
-        <rdfs:range rdf:resource="http://www.w3id.org/hsu-aut/css#Process"/>
-    </rdf:Description>
 
     <!-- http://www.hsu-hh.de/aut/ParX#hasApplication -->
         
