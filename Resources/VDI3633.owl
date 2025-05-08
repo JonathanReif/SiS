@@ -21,15 +21,15 @@
     
 
 
-    <!-- http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#hasProcessQuantity -->
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#hasProcessQuantity -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#hasProcessQuantity"/>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#hasProcessQuantity"/>
     
 
 
-    <!-- http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#hasResultsData -->
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#hasResultsData -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#hasResultsData"/>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#hasResultsData"/>
     
 
 
@@ -44,17 +44,17 @@
     
 
 
-    <!-- http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Data -->
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#Data -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Data">
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Simulation"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#Data">
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#Simulation"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Simulation -->
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#Simulation -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/2024/3/VDI3633#Simulation"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#Simulation"/>
 </rdf:RDF>
 
 
