@@ -6,7 +6,11 @@
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633"/>
+    <owl:Ontology rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633">
+        <rdfs:comment xml:lang="en">Ontology Design Pattern based on VDI 3633 - Simulation of systems in materials handling, logistics and production. This ODP models the core concepts from Section 2 (Terms and definitions) of the VDI 3633 standard.</rdfs:comment>
+        <rdfs:label xml:lang="en">VDI 3633 Ontology Design Pattern</rdfs:label>
+        <owl:versionInfo>1.0</owl:versionInfo>
+    </owl:Ontology>
     
 
 
@@ -21,15 +25,102 @@
     
 
 
-    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#hasProcessQuantity -->
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#hasExperimentData -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#hasProcessQuantity"/>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#hasExperimentData">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationRun"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#ExperimentData"/>
+        <rdfs:comment xml:lang="en">Relates a simulation run to its experiment data. Experiment data such as the starting time and duration are newly determined for each simulation run.</rdfs:comment>
+        <rdfs:label xml:lang="en">has experiment data</rdfs:label>
+    </owl:ObjectProperty>
     
 
 
-    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#hasResultsData -->
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#hasInputData -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#hasResultsData"/>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#hasInputData">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationRun"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#InputData"/>
+        <rdfs:comment xml:lang="en">Relates a simulation to its input data. Input data are provided by the user and are either of a static character or established on the basis of stochastic variables.</rdfs:comment>
+        <rdfs:label xml:lang="en">has input data</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#hasInternalModelData -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#hasInternalModelData">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#Model"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#InternalModelData"/>
+        <rdfs:comment xml:lang="en">Relates a model to its internal data. Internal model data are constants determined during model development as well as variables calculated during the simulation run.</rdfs:comment>
+        <rdfs:label xml:lang="en">has internal model data</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#hasModel -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#hasModel">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationEnvironment"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#Model"/>
+        <rdfs:comment xml:lang="en">Relates a simulation environment to its underlying model.</rdfs:comment>
+        <rdfs:label xml:lang="en">has model</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#hasProcess -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#hasProcess">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#System"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#Process"/>
+        <rdfs:comment xml:lang="en">Relates a system to its processes.</rdfs:comment>
+        <rdfs:label xml:lang="en">has process</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#hasSimulationResultData -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#hasSimulationResultData">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationRun"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationResultData"/>
+        <rdfs:comment xml:lang="en">Relates a simulation run to its result data. Simulation result data are collected during the simulation run and either exported during or after the run, or stored for further use.</rdfs:comment>
+        <rdfs:label xml:lang="en">has simulation result data</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#hasSimulationRun -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#hasSimulationRun">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationExperiment"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationRun"/>
+        <rdfs:comment xml:lang="en">Relates a simulation experiment to its simulation runs.</rdfs:comment>
+        <rdfs:label xml:lang="en">has simulation run</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#modelsSystem -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#modelsSystem">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#Model"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#System"/>
+        <rdfs:comment xml:lang="en">Relates a model to the system it reproduces.</rdfs:comment>
+        <rdfs:label xml:lang="en">models system</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#usesSimulationTool -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#usesSimulationTool">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationEnvironment"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationTool"/>
+        <rdfs:comment xml:lang="en">Relates a simulation environment to the simulation tool used for execution.</rdfs:comment>
+        <rdfs:label xml:lang="en">uses simulation tool</rdfs:label>
+    </owl:ObjectProperty>
     
 
 
@@ -47,14 +138,150 @@
     <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#Data -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#Data">
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#Simulation"/>
+        <rdfs:comment xml:lang="en">Abstract base class for all data types used in simulation according to VDI 3633.</rdfs:comment>
+        <rdfs:label xml:lang="en">Data</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#ExperimentData -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#ExperimentData">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#Data"/>
+        <rdfs:comment xml:lang="en">Experiment data such as the starting time of the simulation, the duration of the simulation and the model parameters relevant to the simulation run are newly determined for each simulation run.</rdfs:comment>
+        <rdfs:label xml:lang="en">Experiment Data</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#InputData -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#InputData">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#Data"/>
+        <rdfs:comment xml:lang="en">Input data are provided by the user of the model. They are either of a static character (e.g. buffer capacities or vehicle lengths) or are established on the basis of stochastic variables (e.g. duration of disturbances, fluctuating processing times).</rdfs:comment>
+        <rdfs:label xml:lang="en">Input Data</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#InternalModelData -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#InternalModelData">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#Data"/>
+        <rdfs:comment xml:lang="en">Internal model data are constants determined during the model development as well as variables calculated during the simulation run. The latter are linked to the simulation time and have a dynamic character.</rdfs:comment>
+        <rdfs:label xml:lang="en">Internal Model Data</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#Model -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#Model">
+        <rdfs:comment xml:lang="en">Simplified reproduction of a planned or existing system with its processes in a different conceptual or concrete system. Its differences from the real system in terms of its characteristics that are relevant to the investigation are within a given range of tolerance.</rdfs:comment>
+        <rdfs:label xml:lang="en">Model</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#Process -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#Process">
+        <rdfs:comment xml:lang="en">Full set of interacting operations in a system through which material, energy or information are processed, transported or stored. [adapted from DIN IEC 60050-351]</rdfs:comment>
+        <rdfs:label xml:lang="en">Process</rdfs:label>
     </owl:Class>
     
 
 
     <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#Simulation -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#Simulation"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#Simulation">
+        <rdfs:comment xml:lang="en">Representation of a system with its dynamic processes in an experimentable model to reach findings which are transferable to reality; in particular, the processes are developed over time. In the broader sense, simulation refers to the preparation, execution and evaluation of targeted experiments with a simulation model.</rdfs:comment>
+        <rdfs:label xml:lang="en">Simulation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationEnvironment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationEnvironment">
+        <rdfs:comment xml:lang="en">An executable simulation environment combining a model with a simulation tool. This composite resource provides the simulation capability that can be utilized by simulation processes. The simulation environment represents the technical infrastructure necessary to execute simulations.</rdfs:comment>
+        <rdfs:label xml:lang="en">Simulation Environment</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationExperiment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationExperiment">
+        <rdfs:comment xml:lang="en">Targeted empirical investigation of a model&apos;s behaviour by a set of simulation runs with a systematic variation of parameters or structures. The simulation itself does not involve any optimisation. However, the systematic variation of parameters can be supported by mathematical optimisation procedures to achieve a favourable parameter configuration in terms of the simulation goals.</rdfs:comment>
+        <rdfs:label xml:lang="en">Simulation Experiment</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationResultData -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationResultData">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#Data"/>
+        <rdfs:comment xml:lang="en">Simulation result data are collected during the simulation run and either exported during or after the run, or stored for further use.</rdfs:comment>
+        <rdfs:label xml:lang="en">Simulation Result Data</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationRun -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationRun">
+        <rdfs:comment xml:lang="en">Reproduction of a system&apos;s behaviour with a specific executable model over a certain (simulation) time period during which the values for investigation-relevant state variables are collected and, as far as required, statistically evaluated.</rdfs:comment>
+        <rdfs:label xml:lang="en">Simulation Run</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationTool -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationTool">
+        <rdfs:comment xml:lang="en">Software program which can be used to build a model reproducing a system&apos;s dynamic behaviour and processes and to make this model executable.</rdfs:comment>
+        <rdfs:label xml:lang="en">Simulation Tool</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#Structure -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#Structure">
+        <rdfs:comment xml:lang="en">Relations among the elements of a system. [adapted from DIN IEC 60050-351]</rdfs:comment>
+        <rdfs:label xml:lang="en">Structure</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#System -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#System">
+        <rdfs:comment xml:lang="en">A set of interrelated elements separated from the environment. A system is characterised by: the definition of borders to the environment (system borders), with which it can exchange material, energy and information via interfaces (system input and output); its elements which represent systems themselves (subsystems) or are regarded as not being decomposable; the sequence structure in the elements; the relations which connect the system elements among each other; the states of the elements; and the state transitions of the elements. [adapted from DIN IEC 60050-351]</rdfs:comment>
+        <rdfs:label xml:lang="en">System</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#ExperimentData"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#InputData"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#InternalModelData"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationResultData"/>
+        </owl:members>
+    </rdf:Description>
 </rdf:RDF>
 
 
