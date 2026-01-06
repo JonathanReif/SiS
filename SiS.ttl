@@ -107,8 +107,8 @@ VDI3633:hasSimulationResultData rdfs:subPropertyOf CSS:hasOutput .
 
 SiS:hasQualityCriteria a owl:ObjectProperty ;
     rdfs:label "has Quality Criteria"@en ;
-    rdfs:comment "Connects a simulation to its quality criteria."@en ;
-    rdfs:domain VDI3633:Simulation ;
+    rdfs:comment "Connects a simulation environment to its quality criteria."@en ;
+    rdfs:domain VDI3633:SimulationEnvironment ;
     rdfs:range SiS:QualityCriteria .
 
 SiS:hasInfluence a owl:ObjectProperty ;
