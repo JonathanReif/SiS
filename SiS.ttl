@@ -1,0 +1,235 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix VDI3633: <http://www.semanticweb.org/reif/ontologies/VDI3633#> .
+@prefix VDI3682: <http://www.w3id.org/hsu-aut/VDI3682#> .
+@prefix DINEN61360: <http://www.w3id.org/hsu-aut/DINEN61360#> .
+@prefix CSS: <http://www.w3id.org/hsu-aut/css#> .
+@prefix CaSk: <http://www.w3id.org/hsu-aut/cask#> .
+@prefix math: <http://openmath.org/vocab/math#> .
+@prefix ParX: <http://www.hsu-hh.de/aut/ParX#> .
+@prefix SiS: <http://www.semanticweb.org/reif/ontologies/SiS#> .
+
+# ============================================
+# Ontology Metadata
+# ============================================
+
+<http://www.semanticweb.org/reif/ontologies/SiS> a owl:Ontology ;
+    rdfs:label "Simulation Support (SiS) Ontology - T-Box"@en ;
+    rdfs:comment "Terminological Box (T-Box) for the Simulation Support ontology. Defines classes and properties for simulation modeling, quality criteria, and influences."@en ;
+    owl:versionInfo "1.0" ;
+    owl:imports <http://www.w3id.org/hsu-aut/cask/2.5.4> ,
+                <https://raw.githubusercontent.com/CaSkade-Automation/CSS/refs/heads/main/CSS-Ontology.ttl> ,
+                <https://raw.githubusercontent.com/JonathanReif/SiS/refs/heads/main/Resources/VDI3633.owl> ,
+                <https://raw.githubusercontent.com/hsu-aut/IndustrialStandard-ODP-DINEN61360/v2.0.1/DINEN61360.owl> ,
+                <https://raw.githubusercontent.com/hsu-aut/ParX/main/ParX.owl> .
+
+# ============================================
+# SiS Core Classes
+# ============================================
+
+SiS:Influence a owl:Class ;
+    rdfs:label "Influence"@en ;
+    rdfs:comment "Abstract base class for different types of influences in simulations."@en .
+
+SiS:InfluenceScore a owl:Class ;
+    rdfs:label "Influence Score"@en ;
+    rdfs:comment "Quantifies the direct influence of an input on a quality criterion."@en ;
+    rdfs:subClassOf SiS:Influence .
+
+SiS:SensitivityIndex a owl:Class ;
+    rdfs:label "Sensitivity Index"@en ;
+    rdfs:comment "Measures the sensitivity of a quality criterion to changes in an input parameter."@en ;
+    rdfs:subClassOf SiS:Influence .
+
+SiS:Interdependency a owl:Class ;
+    rdfs:label "Interdependency"@en ;
+    rdfs:comment "Represents dependencies between different inputs or quality criteria."@en ;
+    rdfs:subClassOf SiS:Influence .
+
+SiS:QualityCriteria a owl:Class ;
+    rdfs:label "Quality Criteria"@en ;
+    rdfs:comment "Represents quality criteria for simulations, such as simulation time, lead time, accuracy, or technology readiness level."@en ;
+    rdfs:subClassOf CSS:Property .
+
+SiS:RequiredQuality a owl:Class ;
+    rdfs:label "Required Quality"@en ;
+    rdfs:comment "Represents required quality criteria that must be met by a simulation."@en ;
+    rdfs:subClassOf VDI3633:Data .
+
+# ============================================
+# VDI3633 Integration with CSS
+# ============================================
+# These subclass relationships enable capability-based planning for simulations
+# using the CSS (Capability Skill Service) ontology.
+
+# Data as Product
+# VDI3633 Data represents artifacts (inputs/outputs) in the simulation domain
+VDI3633:Data rdfs:subClassOf CSS:Product .
+
+# SimulationEnvironment as Resource
+# SimulationEnvironment = Resource that provides simulation execution capability
+# A SimulationEnvironment combines Model + SimulationTool and provides CSS:Capability
+VDI3633:SimulationEnvironment rdfs:subClassOf CSS:Resource .
+
+# SimulationRun as Process
+# SimulationRun = Concrete execution process that requires SimulationEnvironment capability
+# The actual process that transforms InputData into SimulationResultData
+# Uses CSS:requiresCapability to find suitable SimulationEnvironments
+VDI3633:SimulationRun rdfs:subClassOf CSS:Process .
+
+# ============================================
+# VDI3633 Integration with VDI3682
+# ============================================
+# This mapping enables linking simulations to real-world production processes
+# described using VDI3682.
+
+# Process Integration
+# A process in the simulated system (VDI3633:Process) is conceptually a VDI3682:Process
+# This allows connecting VDI3633:Simulation to concrete VDI3682 process descriptions
+VDI3633:Process rdfs:subClassOf VDI3682:Process .
+
+# ============================================
+# VDI3633 Property Mappings to CSS
+# ============================================
+# These property mappings integrate VDI3633 data flow with CSS input/output modeling.
+
+# Input Data Property Mapping
+VDI3633:hasInputData rdfs:subPropertyOf CSS:hasInput .
+
+# Simulation Result Data Property Mapping
+VDI3633:hasSimulationResultData rdfs:subPropertyOf CSS:hasOutput .
+
+# ============================================
+# SiS Object Properties
+# ============================================
+
+SiS:hasQualityCriteria a owl:ObjectProperty ;
+    rdfs:label "has Quality Criteria"@en ;
+    rdfs:comment "Connects a simulation to its quality criteria."@en ;
+    rdfs:domain VDI3633:Simulation ;
+    rdfs:range SiS:QualityCriteria .
+
+SiS:hasInfluence a owl:ObjectProperty ;
+    rdfs:label "has Influence"@en ;
+    rdfs:comment "Connects an input data element to an influence object."@en ;
+    rdfs:domain VDI3633:Data ;
+    rdfs:range SiS:Influence .
+
+SiS:isInfluenceFor a owl:ObjectProperty ;
+    rdfs:label "is Influence For"@en ;
+    rdfs:comment "Connects an influence to the process it affects."@en ;
+    rdfs:domain SiS:Influence ;
+    rdfs:range CSS:Process .
+
+SiS:hasInfluenceOn a owl:ObjectProperty ;
+    rdfs:label "has Influence On"@en ;
+    rdfs:comment "Connects an influence to the quality criterion it affects."@en ;
+    rdfs:domain SiS:Influence ;
+    rdfs:range SiS:QualityCriteria .
+
+SiS:isSimulationFor a owl:ObjectProperty ;
+    rdfs:label "is Simulation For"@en ;
+    rdfs:comment "Connects a simulation to the process or resource it simulates."@en ;
+    rdfs:domain VDI3633:Simulation ;
+    rdfs:range owl:Thing .
+
+# ============================================
+# Property Domain/Range Extensions
+# ============================================
+# These extend properties from imported ontologies with additional domain/range constraints
+# specific to the SiS ontology context.
+
+## DINEN61360 Extensions
+DINEN61360:has_Data_Element
+    rdfs:domain SiS:InfluenceScore , SiS:SensitivityIndex , SiS:RequiredQuality ,
+                VDI3633:Data , CSS:Resource , SiS:QualityCriteria .
+
+## ParX Extensions
+ParX:isDataFor
+    rdfs:domain DINEN61360:Data_Element ;
+    rdfs:range math:Object .
+
+## Math Extensions for SiS:Interdependency
+math:arguments
+    rdfs:domain SiS:Interdependency ;
+    rdfs:range math:ObjectList .
+
+math:operator
+    rdfs:domain SiS:Interdependency ;
+    rdfs:range math:Operator .
+
+# ============================================
+# SiS Data Properties
+# ============================================
+
+SiS:influenceValue a owl:DatatypeProperty ;
+    rdfs:label "influence value"@en ;
+    rdfs:comment "Numerical value quantifying the influence."@en ;
+    rdfs:domain SiS:Influence ;
+    rdfs:range xsd:decimal .
+
+SiS:qualityCriterionValue a owl:DatatypeProperty ;
+    rdfs:label "quality criterion value"@en ;
+    rdfs:comment "Numerical value of a quality criterion."@en ;
+    rdfs:domain SiS:QualityCriteria ;
+    rdfs:range xsd:decimal .
+
+SiS:qualityCriterionType a owl:DatatypeProperty ;
+    rdfs:label "quality criterion type"@en ;
+    rdfs:comment "Type identifier for a quality criterion (e.g., SimTime_TD, LeadTime_TD)."@en ;
+    rdfs:domain SiS:QualityCriteria ;
+    rdfs:range xsd:string .
+
+# ============================================
+# Axioms and Constraints
+# ============================================
+
+## Disjoint Classes
+[ a owl:AllDisjointClasses ;
+  owl:members ( SiS:InfluenceScore SiS:SensitivityIndex SiS:Interdependency )
+] .
+
+## Property Characteristics
+SiS:hasQualityCriteria a owl:AsymmetricProperty .
+SiS:isSimulationFor a owl:AsymmetricProperty .
+SiS:hasInfluenceOn a owl:AsymmetricProperty .
+
+# ============================================
+# Annotation Properties and Usage Notes
+# ============================================
+
+SiS:usageNote a owl:AnnotationProperty ;
+    rdfs:label "usage note"@en ;
+    rdfs:comment "Provides additional usage information for ontology elements."@en .
+
+SiS:QualityCriteria SiS:usageNote """Quality criteria are used to evaluate and select appropriate simulations.
+Each quality criterion should have:
+- A Type Description (e.g., SimTime_TD, LeadTime_TD)
+- An Instance Description with a specific value
+- A Data Element linking the type and instance descriptions"""@en .
+
+SiS:Influence SiS:usageNote """Influences model how input parameters affect quality criteria.
+Three types of influences are supported:
+- InfluenceScore: Direct quantitative impact
+- SensitivityIndex: Sensitivity to parameter changes
+- Interdependency: Dependencies between parameters"""@en .
+
+VDI3633:Data SiS:usageNote """VDI3633 Data represents simulation data artifacts and is mapped to CSS:Product.
+This enables integration with CSS-based capability matching and data flow modeling."""@en .
+
+VDI3633:SimulationEnvironment SiS:usageNote """A SimulationEnvironment should:
+- Provide at least one capability (CSS:providesCapability)
+- Combine a Model and a SimulationTool (via hasModel and usesSimulationTool)
+- Be discoverable for capability-based planning"""@en .
+
+VDI3633:SimulationRun SiS:usageNote """A SimulationRun should:
+- Require a capability (CSS:requiresCapability) provided by a SimulationEnvironment
+- Have InputData (VDI3633:hasInputData, subproperty of CSS:hasInput)
+- Produce SimulationResultData (VDI3633:hasSimulationResultData, subproperty of CSS:hasOutput)
+- Be the concrete execution process that transforms inputs to outputs"""@en .
+
+VDI3633:Process SiS:usageNote """VDI3633:Process is mapped to VDI3682:Process to enable linking simulations
+to real-world production processes. This allows using SiS:isSimulationFor to connect
+a simulation to a concrete VDI3682 process description."""@en .
