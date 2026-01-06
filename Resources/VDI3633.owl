@@ -121,6 +121,32 @@
         <rdfs:comment xml:lang="en">Relates a simulation environment to the simulation tool used for execution.</rdfs:comment>
         <rdfs:label xml:lang="en">uses simulation tool</rdfs:label>
     </owl:ObjectProperty>
+
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#comprisesExperiment -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#comprisesExperiment">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#Simulation"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationExperiment"/>
+        <rdfs:comment xml:lang="de">Verknüpft eine Simulation (im weiteren Sinne) mit den Simulationsexperimenten, die sie umfasst. Gemäß VDI 3633-1 wird unter Simulation das Vorbereiten, Durchführen und Auswerten gezielter Experimente mit einem Simulationsmodell verstanden.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Relates a simulation (in the broader sense) to the simulation experiments it comprises. According to VDI 3633-1, simulation in the broader sense refers to the preparation, execution and evaluation of targeted experiments with a simulation model.</rdfs:comment>
+        <rdfs:label xml:lang="de">umfasst Experiment</rdfs:label>
+        <rdfs:label xml:lang="en">comprises experiment</rdfs:label>
+    </owl:ObjectProperty>
+
+
+
+    <!-- http://www.semanticweb.org/reif/ontologies/VDI3633#isExecutedWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reif/ontologies/VDI3633#isExecutedWith">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationRun"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reif/ontologies/VDI3633#SimulationEnvironment"/>
+        <rdfs:comment xml:lang="de">Verknüpft einen Simulationslauf mit der Simulationsumgebung (ausführbares Modell und Simulationswerkzeug), mit der er durchgeführt wird. Gemäß VDI 3633-1 ist ein Simulationslauf die Nachbildung des Verhaltens eines Systems mit einem spezifizierten ablauffähigen Modell.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Relates a simulation run to the simulation environment (executable model and simulation tool) with which it is executed. According to VDI 3633-1, a simulation run is the reproduction of a system's behaviour with a specific executable model.</rdfs:comment>
+        <rdfs:label xml:lang="de">wird durchgeführt mit</rdfs:label>
+        <rdfs:label xml:lang="en">is executed with</rdfs:label>
+    </owl:ObjectProperty>
     
 
 
