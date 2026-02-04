@@ -18,7 +18,7 @@
 <http://www.semanticweb.org/reif/ontologies/SiS> a owl:Ontology ;
     rdfs:label "Simulation Support (SiS) Ontology - T-Box"@en ;
     rdfs:comment "Terminological Box (T-Box) for the Simulation Support ontology. Defines classes and properties for simulation modeling, quality criteria, and influences."@en ;
-    owl:versionInfo "1.0" ;
+    owl:versionInfo "1.1" ;
     owl:imports <http://www.w3id.org/hsu-aut/cask/2.5.4> ,
                 <https://raw.githubusercontent.com/CaSkade-Automation/CSS/refs/heads/main/CSS-Ontology.ttl> ,
                 <https://raw.githubusercontent.com/JonathanReif/SiS/refs/heads/main/Resources/VDI3633.owl> ,
@@ -109,31 +109,71 @@ SiS:hasQualityCriteria a owl:ObjectProperty ;
     rdfs:label "has Quality Criteria"@en ;
     rdfs:comment "Connects a simulation environment to its quality criteria."@en ;
     rdfs:domain VDI3633:SimulationEnvironment ;
-    rdfs:range SiS:QualityCriteria .
+    rdfs:range SiS:QualityCriteria ;
+    owl:inverseOf SiS:isQualityCriteriaOf .
+
+SiS:isQualityCriteriaOf a owl:ObjectProperty ;
+    rdfs:label "is Quality Criteria Of"@en ;
+    rdfs:comment "Inverse of hasQualityCriteria. Links a quality criterion to the simulation environment it belongs to."@en ;
+    rdfs:domain SiS:QualityCriteria ;
+    rdfs:range VDI3633:SimulationEnvironment ;
+    owl:inverseOf SiS:hasQualityCriteria .
 
 SiS:hasInfluence a owl:ObjectProperty ;
     rdfs:label "has Influence"@en ;
     rdfs:comment "Connects an input data element to an influence object."@en ;
     rdfs:domain VDI3633:Data ;
-    rdfs:range SiS:Influence .
+    rdfs:range SiS:Influence ;
+    owl:inverseOf SiS:isInfluenceOf .
+
+SiS:isInfluenceOf a owl:ObjectProperty ;
+    rdfs:label "is Influence Of"@en ;
+    rdfs:comment "Inverse of hasInfluence. Links an influence to the data element it originates from."@en ;
+    rdfs:domain SiS:Influence ;
+    rdfs:range VDI3633:Data ;
+    owl:inverseOf SiS:hasInfluence .
 
 SiS:isInfluenceFor a owl:ObjectProperty ;
     rdfs:label "is Influence For"@en ;
     rdfs:comment "Connects an influence to the process it affects."@en ;
     rdfs:domain SiS:Influence ;
-    rdfs:range CSS:Process .
+    rdfs:range CSS:Process ;
+    owl:inverseOf SiS:hasInfluenceFrom .
+
+SiS:hasInfluenceFrom a owl:ObjectProperty ;
+    rdfs:label "has Influence From"@en ;
+    rdfs:comment "Inverse of isInfluenceFor. Links a process to the influences that affect it."@en ;
+    rdfs:domain CSS:Process ;
+    rdfs:range SiS:Influence ;
+    owl:inverseOf SiS:isInfluenceFor .
 
 SiS:hasInfluenceOn a owl:ObjectProperty ;
     rdfs:label "has Influence On"@en ;
     rdfs:comment "Connects an influence to the quality criterion it affects."@en ;
     rdfs:domain SiS:Influence ;
-    rdfs:range SiS:QualityCriteria .
+    rdfs:range SiS:QualityCriteria ;
+    owl:inverseOf SiS:isInfluencedBy .
+
+SiS:isInfluencedBy a owl:ObjectProperty ;
+    rdfs:label "is Influenced By"@en ;
+    rdfs:comment "Inverse of hasInfluenceOn. Links a quality criterion to the influences that affect it."@en ;
+    rdfs:domain SiS:QualityCriteria ;
+    rdfs:range SiS:Influence ;
+    owl:inverseOf SiS:hasInfluenceOn .
 
 SiS:isSimulationFor a owl:ObjectProperty ;
     rdfs:label "is Simulation For"@en ;
     rdfs:comment "Connects a simulation to the process or resource it simulates."@en ;
     rdfs:domain VDI3633:Simulation ;
-    rdfs:range owl:Thing .
+    rdfs:range owl:Thing ;
+    owl:inverseOf SiS:hasSimulation .
+
+SiS:hasSimulation a owl:ObjectProperty ;
+    rdfs:label "has Simulation"@en ;
+    rdfs:comment "Inverse of isSimulationFor. Links a process or resource to simulations that model it."@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range VDI3633:Simulation ;
+    owl:inverseOf SiS:isSimulationFor .
 
 # ============================================
 # Property Domain/Range Extensions
@@ -187,14 +227,27 @@ SiS:qualityCriterionType a owl:DatatypeProperty ;
 # ============================================
 
 ## Disjoint Classes
+# Influence subtypes are mutually disjoint
 [ a owl:AllDisjointClasses ;
   owl:members ( SiS:InfluenceScore SiS:SensitivityIndex SiS:Interdependency )
 ] .
 
+# SiS core classes are mutually disjoint
+[ a owl:AllDisjointClasses ;
+  owl:members ( SiS:Influence SiS:QualityCriteria SiS:RequiredQuality )
+] .
+
 ## Property Characteristics
 SiS:hasQualityCriteria a owl:AsymmetricProperty .
+SiS:isQualityCriteriaOf a owl:AsymmetricProperty .
 SiS:isSimulationFor a owl:AsymmetricProperty .
+SiS:hasSimulation a owl:AsymmetricProperty .
 SiS:hasInfluenceOn a owl:AsymmetricProperty .
+SiS:isInfluencedBy a owl:AsymmetricProperty .
+SiS:hasInfluence a owl:AsymmetricProperty .
+SiS:isInfluenceOf a owl:AsymmetricProperty .
+SiS:isInfluenceFor a owl:AsymmetricProperty .
+SiS:hasInfluenceFrom a owl:AsymmetricProperty .
 
 # ============================================
 # Annotation Properties and Usage Notes
