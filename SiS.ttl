@@ -175,16 +175,25 @@ SiS:hasSimulation a owl:ObjectProperty ;
     rdfs:range VDI3633:Simulation ;
     owl:inverseOf SiS:isSimulationFor .
 
+SiS:hasDataElement a owl:ObjectProperty ;
+    rdfs:subPropertyOf DINEN61360:has_Data_Element ;
+    rdfs:label "has Data Element"@en ;
+    rdfs:comment "SiS-specific subproperty of DINEN61360:has_Data_Element for linking SiS entities to data elements. Used to connect influences, quality criteria, and simulation data to their corresponding DINEN61360 data element descriptions."@en ;
+    rdfs:domain [ a owl:Class ;
+                  owl:unionOf ( SiS:InfluenceScore
+                               SiS:SensitivityIndex
+                               SiS:RequiredQuality
+                               VDI3633:Data
+                               CSS:Resource
+                               SiS:QualityCriteria )
+                ] ;
+    rdfs:range DINEN61360:Data_Element .
+
 # ============================================
 # Property Domain/Range Extensions
 # ============================================
 # These extend properties from imported ontologies with additional domain/range constraints
 # specific to the SiS ontology context.
-
-## DINEN61360 Extensions
-DINEN61360:has_Data_Element
-    rdfs:domain SiS:InfluenceScore , SiS:SensitivityIndex , SiS:RequiredQuality ,
-                VDI3633:Data , CSS:Resource , SiS:QualityCriteria .
 
 ## ParX Extensions
 ParX:isDataFor
