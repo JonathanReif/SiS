@@ -64,9 +64,10 @@ SiS:RequiredQuality a owl:Class ;
 # These subclass relationships enable capability-based planning for simulations
 # using the CSS (Capability Skill Service) ontology.
 
-# Data as Product
-# VDI3633 Data represents artifacts (inputs/outputs) in the simulation domain
-VDI3633:Data rdfs:subClassOf CSS:Product .
+# VDI3633:Data is NOT a subclass of CSS:Product
+# CSS:Product is defined as "physical objects only" in the CSS Information Model
+# VDI3633:Data represents virtual information artifacts (simulation parameters, results)
+# These are conceptually analogous to products in the manufacturing domain but formally independent
 
 # SimulationEnvironment as Resource
 # SimulationEnvironment = Resource that provides simulation execution capability
@@ -91,15 +92,27 @@ VDI3633:SimulationRun rdfs:subClassOf CSS:Process .
 VDI3633:Process rdfs:subClassOf VDI3682:Process .
 
 # ============================================
-# VDI3633 Property Mappings to CSS
+# VDI3633 Data Flow Properties (Independent from CSS)
 # ============================================
-# These property mappings integrate VDI3633 data flow with CSS input/output modeling.
+# These properties characterize input-output relationships in the simulation domain.
+# They are conceptually analogous to CSS:hasInput and CSS:hasOutput but formally independent
+# to avoid range conflicts (CSS:Product is physical objects, VDI3633:Data is virtual information).
 
-# Input Data Property Mapping
-VDI3633:hasInputData rdfs:subPropertyOf CSS:hasInput .
+# Input Data Property
+# Links a SimulationRun to its input parameters (VDI3633:Data)
+VDI3633:hasInputData a owl:ObjectProperty ;
+    rdfs:label "has Input Data"@en ;
+    rdfs:comment "Connects a simulation run to its input parameters. Conceptually analogous to CSS:hasInput but with range VDI3633:Data (virtual information) instead of CSS:Product (physical objects)."@en ;
+    rdfs:domain VDI3633:SimulationRun ;
+    rdfs:range VDI3633:Data .
 
-# Simulation Result Data Property Mapping
-VDI3633:hasSimulationResultData rdfs:subPropertyOf CSS:hasOutput .
+# Simulation Result Data Property
+# Links a SimulationRun to its output results (VDI3633:Data)
+VDI3633:hasSimulationResultData a owl:ObjectProperty ;
+    rdfs:label "has Simulation Result Data"@en ;
+    rdfs:comment "Connects a simulation run to its output results. Conceptually analogous to CSS:hasOutput but with range VDI3633:Data (virtual information) instead of CSS:Product (physical objects)."@en ;
+    rdfs:domain VDI3633:SimulationRun ;
+    rdfs:range VDI3633:Data .
 
 # ============================================
 # SiS Object Properties
@@ -278,8 +291,9 @@ Three types of influences are supported:
 - SensitivityIndex: Sensitivity to parameter changes
 - Interdependency: Dependencies between parameters"""@en .
 
-VDI3633:Data SiS:usageNote """VDI3633 Data represents simulation data artifacts and is mapped to CSS:Product.
-This enables integration with CSS-based capability matching and data flow modeling."""@en .
+VDI3633:Data SiS:usageNote """VDI3633 Data represents virtual information artifacts (simulation parameters, results).
+It is NOT a subclass of CSS:Product (which represents physical objects), but conceptually analogous.
+This allows modeling information flows in the simulation domain independently from physical product flows."""@en .
 
 VDI3633:SimulationEnvironment SiS:usageNote """A SimulationEnvironment should:
 - Provide at least one capability (CSS:providesCapability)
@@ -288,8 +302,8 @@ VDI3633:SimulationEnvironment SiS:usageNote """A SimulationEnvironment should:
 
 VDI3633:SimulationRun SiS:usageNote """A SimulationRun should:
 - Require a capability (CSS:requiresCapability) provided by a SimulationEnvironment
-- Have InputData (VDI3633:hasInputData, subproperty of CSS:hasInput)
-- Produce SimulationResultData (VDI3633:hasSimulationResultData, subproperty of CSS:hasOutput)
+- Have InputData (VDI3633:hasInputData, analogous to CSS:hasInput)
+- Produce SimulationResultData (VDI3633:hasSimulationResultData, analogous to CSS:hasOutput)
 - Be the concrete execution process that transforms inputs to outputs"""@en .
 
 VDI3633:Process SiS:usageNote """VDI3633:Process is mapped to VDI3682:Process to enable linking simulations
